@@ -1,0 +1,21 @@
+# Node
+node_modules/
+npm-debug.log
+
+# Variáveis de ambiente
+.env
+.env.local
+.env.*.local
+
+# WhatsApp Web Session
+.wwebjs_auth/
+.wwebjs_cache/
+
+# Build
+dist/
+build/
+
+# Sistema/Editor
+.DS_Store
+.vscode/
+.idea/

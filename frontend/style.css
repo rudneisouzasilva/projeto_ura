@@ -1,0 +1,615 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --ios-blue: #007aff;
+  --ios-green: #34c759;
+  --ios-red: #ff3b30;
+  --ios-gray-button: rgba(255, 255, 255, 0.18);
+  --ios-gray-button-light: #e5e5ea;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, #3a3a3c 0, #111 35%, #050505 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Arial, sans-serif;
+}
+
+button {
+  font-family: inherit;
+}
+
+.iphone-frame {
+  width: 393px;
+  height: 852px;
+  background: #050505;
+  border-radius: 58px;
+  padding: 10px;
+  border: 8px solid #1c1c1e;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.06),
+    0 0 0 2px #2c2c2e,
+    0 28px 90px rgba(0, 0, 0, 0.82);
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 44px;
+  background: #000;
+}
+
+.status-bar {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  right: 0;
+  height: 34px;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  pointer-events: none;
+}
+
+.status-icons {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.status-icons svg {
+  display: block;
+  color: currentColor;
+}
+
+.status-signal {
+  width: 22px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.status-wifi {
+  width: 20px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.status-wifi circle {
+  fill: currentColor;
+  stroke: none;
+}
+
+.status-battery {
+  width: 30px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+.status-battery rect:last-child {
+  fill: currentColor;
+  stroke: none;
+}
+
+.dynamic-island {
+  position: absolute;
+  top: 13px;
+  left: 50%;
+  width: 126px;
+  height: 36px;
+  transform: translateX(-50%);
+  background: #000;
+  border-radius: 999px;
+  z-index: 70;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* TELA DE DISCADOR */
+
+.dial-screen {
+  position: absolute;
+  inset: 0;
+  background: #fbfbfd;
+  color: #000;
+  padding: 78px 30px 0;
+}
+
+.dial-number {
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1c1c1e;
+  font-size: 31px;
+  font-weight: 300;
+  letter-spacing: -0.8px;
+  line-height: 1;
+}
+
+.dial-keypad {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px 22px;
+}
+
+.dial-keypad button,
+.keypad-grid button {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: transform 0.08s ease, filter 0.12s ease, background 0.12s ease;
+}
+
+.dial-keypad button {
+  background: var(--ios-gray-button-light);
+  color: #000;
+  font-size: 34px;
+  font-weight: 300;
+  letter-spacing: -0.8px;
+}
+
+.dial-keypad button span,
+.keypad-grid button span {
+  display: block;
+  min-height: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  margin-top: -1px;
+}
+
+.dial-keypad button span {
+  color: #222;
+}
+
+.dial-keypad button:active,
+.keypad-grid button:active,
+.action-btn:active span,
+.call-start-button:active,
+.end-button:active,
+.hide-keypad:active {
+  transform: scale(0.93);
+}
+
+.call-start-button {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  border: none;
+  background: var(--ios-green);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px auto 0;
+  cursor: pointer;
+  transition: transform 0.08s ease, filter 0.12s ease;
+}
+
+.call-start-button svg,
+.end-button svg {
+  width: 36px;
+  height: 36px;
+  fill: currentColor;
+}
+
+.phone-tabs {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 88px;
+  padding: 8px 7px 20px;
+  border-top: 1px solid rgba(60,60,67,0.18);
+  background: rgba(255,255,255,0.92);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.phone-tabs button {
+  border: none;
+  background: transparent;
+  color: #8e8e93;
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: default;
+}
+
+.phone-tabs button.active {
+  color: var(--ios-blue);
+}
+
+.tab-icon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  display: inline-block;
+}
+
+.star-icon::before {
+  content: "★";
+  font-size: 24px;
+  line-height: 24px;
+}
+
+.recent-icon::before {
+  content: "◷";
+  font-size: 25px;
+  line-height: 24px;
+}
+
+.contacts-icon::before {
+  content: "●";
+  font-size: 18px;
+  line-height: 15px;
+  display: block;
+  text-align: center;
+}
+
+.contacts-icon::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  bottom: 1px;
+  height: 9px;
+  border-radius: 9px 9px 3px 3px;
+  background: currentColor;
+}
+
+.keypad-icon {
+  background: radial-gradient(currentColor 2px, transparent 3px);
+  background-size: 8px 8px;
+  background-position: 0 0;
+}
+
+.voicemail-icon::before {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: 9px;
+  width: 9px;
+  height: 9px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+
+.voicemail-icon::after {
+  content: "";
+  position: absolute;
+  right: 1px;
+  top: 9px;
+  width: 9px;
+  height: 9px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  box-shadow: -7px 7px 0 -5px currentColor;
+}
+
+/* TELA DE LIGAÇÃO */
+
+.call-screen {
+  position: absolute;
+  inset: 0;
+  color: #fff;
+  background:
+    radial-gradient(circle at 50% -12%, rgba(255,255,255,0.30), transparent 34%),
+    radial-gradient(circle at 16% 18%, rgba(148,158,174,0.50), transparent 34%),
+    radial-gradient(circle at 88% 24%, rgba(80,86,98,0.34), transparent 36%),
+    linear-gradient(180deg, #687080 0%, #3d424d 42%, #17181c 100%);
+}
+
+.call-info {
+  position: absolute;
+  top: 94px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.call-info.keypad-open {
+  opacity: 0;
+  transform: translateY(-18px);
+  pointer-events: none;
+}
+
+.call-info span {
+  display: block;
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.76);
+  margin-bottom: 10px;
+}
+
+.call-info h1 {
+  font-size: 38px;
+  font-weight: 300;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+
+.call-info p {
+  font-size: 17px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.82);
+}
+
+.call-actions {
+  position: absolute;
+  left: 34px;
+  right: 34px;
+  bottom: 188px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px 25px;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 25;
+}
+
+.call-actions.keypad-open {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+.action-btn {
+  border: none;
+  background: transparent;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.action-btn span {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  background: var(--ios-gray-button);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  position: relative;
+}
+
+.action-btn small {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.95);
+}
+
+.action-btn.active span {
+  background: rgba(255,255,255,0.92);
+  color: #111;
+}
+
+.disabled-visual {
+  opacity: 0.56;
+}
+
+.bottom-area {
+  position: absolute;
+  bottom: 52px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 80;
+}
+
+.end-button {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  border: none;
+  background: var(--ios-red);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.08s ease, filter 0.12s ease;
+}
+
+.end-button svg {
+  width: 36px;
+  height: 36px;
+  fill: currentColor;
+  transform: rotate(135deg);
+}
+
+/* TECLADO DURANTE A LIGAÇÃO */
+
+.in-call-keypad {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+
+  /*
+    Mesmíssimo fundo da tela de ligação.
+    Assim parece uma tela nova da chamada, não um bloco sobreposto.
+  */
+  background:
+    radial-gradient(circle at 50% -10%, rgba(255,255,255,0.28), transparent 34%),
+    radial-gradient(circle at 15% 18%, rgba(148,158,174,0.55), transparent 32%),
+    linear-gradient(180deg, #626977 0%, #373d47 42%, #15161a 100%);
+
+  padding: 160px 40px 0;
+}
+
+.call-number-small {
+  display: none;
+}
+
+.typed-key {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 38px;
+  font-weight: 300;
+  color: white;
+}
+
+.keypad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px 22px;
+  margin-top: 4px;
+}
+
+.keypad-grid button {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: none;
+
+  background: rgba(255,255,255,0.20);
+  color: white;
+
+  font-size: 33px;
+  font-weight: 300;
+  letter-spacing: -0.8px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto;
+  cursor: pointer;
+
+  transition: transform 0.08s ease, background 0.12s ease;
+}
+
+.keypad-grid button span {
+  display: block;
+  min-height: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  margin-top: -1px;
+  color: rgba(255,255,255,0.86);
+}
+
+.hide-keypad {
+  display: block;
+  margin: 40px auto 0;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+}
+.toast {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 146px;
+  background: rgba(0,0,0,0.78);
+  color: white;
+  padding: 14px 18px;
+  border-radius: 18px;
+  font-size: 14px;
+  text-align: center;
+  z-index: 90;
+  line-height: 1.35;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* ÍCONES DA LIGAÇÃO */
+
+.action-circle svg {
+  width: 34px;
+  height: 34px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.keypad-svg {
+  width: 42px !important;
+  height: 42px !important;
+  fill: currentColor !important;
+  stroke: none !important;
+}
+
+.action-btn.active .action-circle,
+.action-circle.is-on,
+.action-circle.is-muted {
+  background: rgba(255,255,255,0.92);
+  color: #111;
+}
+
+.action-circle.is-muted::after {
+  content: "";
+  position: absolute;
+  width: 38px;
+  height: 3px;
+  border-radius: 999px;
+  background: currentColor;
+  transform: rotate(-35deg);
+}
+
+@media (max-width: 430px) {
+  body {
+    background: #000;
+  }
+
+  .iphone-frame {
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .phone-screen {
+    border-radius: 0;
+  }
+}
